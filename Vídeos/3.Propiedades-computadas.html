@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades computadas</title>
+</head>
+<body>
+    <div id="app">
+        <h1> {{ mns }}</h1>
+        <hr>
+        <input v-model="tiempo" type="range">{{ tiempo }}
+        <br>
+        <hr>
+        <input v-model="busqueda" type="search" placeholder="Buscar tarea">
+        
+        <hr>
+        <ul>
+            <li v-for="tarea in filtroTareas">{{tarea.nombre}} - {{tarea.tiempo}}h</li>
+        </ul>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        new Vue ({
+            el:"#app",
+            data: {
+                mns: "Iterando",
+                tiempo: 0,
+                busqueda: "",
+                tareas: [
+                    {nombre: 'Aprender Java', tiempo: 30},
+                    {nombre: 'Aprender JavaScript', tiempo: 20},
+                    {nombre: 'Aprender Liquibase', tiempo: 40},
+                    {nombre: 'Aprender Vue.js', tiempo: 20},
+                    {nombre: 'Aprender Pui9', tiempo: 90},
+                    {nombre: 'Aprender Eclipse', tiempo: 10}
+                ]
+            },
+           computed: {
+                filtroTareas(){
+                    return this.tareas.filter(tarea => {
+                        return tarea.tiempo <= this.tiempo && tarea.nombre.includes(this.busqueda);
+                    })
+                }
+           }
+        });
+        Vue.config.devtools = true;
+       
+    </script>
+</body>
+</html>

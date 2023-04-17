@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+
+    <title>Listados en Vue</title>
+</head>
+<body>
+<div id="app">
+    <h1>Recorrer listados en Vue</h1>
+    <ul>
+        <li v-for="(tarea, index) in tareas">
+          {{ index }} - {{ tarea.nombre }}
+        </li>
+    </ul>
+    <br>
+    <hr>
+    <h1>Recorrer un objeto</h1>
+    <p v-for="(valor, propiedad) in usuario">{{ valor }} : {{ propiedad }}</p>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                usuario: {
+                    username: "Cristina",
+                    role: "admin"
+                },
+                tareas: [
+                    {nombre: 'Aprender Java', tiempo: 3},
+                    {nombre: 'Aprender JavaScript', tiempo: 2},
+                    {nombre: 'Aprender Liquibase', tiempo: 4},
+                    {nombre: 'Aprender Vue.js', tiempo: 2},
+                    {nombre: 'Aprender Pui9', tiempo: 9},
+                    {nombre: 'Aprender Eclipse', tiempo: 1}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

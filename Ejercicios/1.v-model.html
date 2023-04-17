@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Ejercicios v-model</title>
+  </head>
+  <body>
+    <div id="app">
+      <form action="">
+        <ol>
+          <li>
+            <p>
+              Crea un formulario con un input text y un botón de enviar. Usando
+              v-model, haz que el valor del input text esté vinculado a una
+              propiedad del objeto data. Cuando el usuario haga clic en el botón
+              de enviar, muestra el valor del input text en la consola del
+              navegador.
+            </p>
+            <input type="text" v-model="texto" />
+            <button type="submit" @click.prevent="Enviar">Enviar</button>
+          </li>
+          <br />
+          <hr />
+          <li>
+            <p>
+              Crea un select con varias opciones. Usando v-model, haz que el
+              valor seleccionado esté vinculado a una propiedad del objeto data.
+              Luego, muestra el valor seleccionado en la pantalla.
+            </p>
+            <select v-model="select">
+              <option value="Opción 1">Opción 1</option>
+              <option value="Opción 2">Opción 2</option>
+              <option value="Opción 3">Opción 3</option>
+              <option value="Opción 4">Opción 4</option>
+            </select>
+            <h2>La opción seleccionada es: {{ select }}</h2>
+          </li>
+          <br />
+          <hr />
+          <li>
+            <p>
+              Crea una lista de checkboxes, cada una con un valor diferente.
+              Usando v-model y un array en el objeto data, haz que los valores
+              de las checkboxes seleccionadas se agreguen al array y se eliminen
+              si se deseleccionan. Luego, muestra el array actualizado en la
+              pantalla.
+            </p>
+            <div v-for="(option, index) in options" :key="index">
+              <input
+                type="checkbox"
+                :value="option"
+                v-model="selectedOptions"
+              />
+              <label>{{ option }}</label>
+            </div>
+            <div>
+              <h2>Las opciones seleccionadas son: {{ selectedOptions }}</h2>
+            </div>
+          </li>
+          <br />
+          <hr />
+          <li>
+            <p>
+              Crea un input checkbox para aceptar los términos y condiciones de
+              un formulario. Usando v-model y una propiedad booleana en el
+              objeto data, haz que el valor del checkbox esté vinculado a la
+              propiedad. Luego, deshabilita el botón de enviar hasta que se
+              seleccione el checkbox.
+            </p>
+            <input type="checkbox" v-model="aceptar" id="terms" />
+            <label for="terms">Aceptar los términos y condiciones</label>
+            <br /><br />
+            <button :disabled="!aceptar" @click.prevent="submitForm">
+              Enviar
+            </button>
+          </li>
+          <br />
+          <hr />
+          <li>
+            <p>
+              Crea un formulario con varios inputs text y un botón de enviar.
+              Usando v-model y una propiedad en el objeto data para cada input,
+              haz que los valores de los inputs estén vinculados a las
+              propiedades correspondientes. Luego, muestra todos los valores en
+              la consola del navegador cuando se hace clic en el botón de
+              enviar.
+            </p>
+            <div>
+              <label for="">Nombre</label> 
+              <input type="text" v-model="nombre" /><br><br>
+
+              <label for="">Apellidos</label> 
+              <input type="text" name="" id="" v-model="apellidos" /><br><br>
+
+              <label for="">Dirección</label> 
+              <input type="text" name="" id="" v-model="direccion"/><br><br>
+
+              <label for="">Teléfono</label> 
+              <input type="text" name="" id="" v-model="telefono"/><br><br>
+              <button type="submit" @click.prevent="submitLabel">Enviar</button>
+            </div>
+          </li>
+        </ol>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          texto: "",
+          select: "",
+          aceptar: false,
+          nombre: "",
+          apellidos: "",
+          direccion: "",
+          telefono: "",
+          options: ["opcion1", "opcion2", "opcion3"],
+          selectedOptions: [],
+        },
+        methods: {
+          Enviar() {
+            console.log(this.texto);
+            this.texto = ""; //lo vaciamos
+          },
+          submitForm() {
+            console.log("Formulario aceptado");
+          },
+          submitLabel() {
+            console.log(this.nombre, this.apellidos, this.direccion, this.telefono)
+            this.nombre = "";
+            this.apellidos = "";
+            this.direccion = "";
+            this.telefono = "";
+          }
+        },
+      });
+      Vue.config.devtools = true;
+    </script>
+  </body>
+</html>
